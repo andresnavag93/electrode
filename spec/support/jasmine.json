@@ -1,0 +1,12 @@
+{
+  "spec_dir": "src",
+  "spec_file": ["**/*.test.js"],
+  "helpers": [
+    "./../spec/helpers/babel.js",
+    "./../spec/helpers/enzyme.js",
+    "./../spec/helpers/*.js",
+    "./../spec/helpers/**/*.js"
+  ],
+  "stopSpecOnExpectationFailure": false,
+  "random": true
+}

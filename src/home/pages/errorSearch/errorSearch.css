@@ -1,0 +1,28 @@
+.error-search-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  align-self: center;
+}
+.error-search__form {
+  width: 100%;
+}
+.date-picker-container {
+  width: 40%;
+}
+.date-picker-container .ant-picker-large {
+  width: 100%;
+}
+.error-search__form .ant-btn {
+  align-self: flex-end;
+  margin-bottom: 24px;
+}
+.title-container {
+  margin-bottom: 12px;
+  width: 100%;
+}
+@media screen and (min-width: 1200px) {
+  .error-search-container {
+    width: 60%;
+  }
+}

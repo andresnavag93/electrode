@@ -1,0 +1,16 @@
+.errors-filter-container {
+  display: flex;
+  align-items: center;
+}
+.errors-filter-container .errors-filter___searchbox {
+  width: 70%;
+  margin-right: 16px;
+}
+.errors-filter-container > div.ant-divider.ant-divider-vertical.errors-filter___divider {
+  margin-left: 16px;
+  margin-right: 8px;
+  height: 3.5vh;
+}
+.errors-filter-container > .errors-filter___button-margin {
+  margin: 0 8px;
+}

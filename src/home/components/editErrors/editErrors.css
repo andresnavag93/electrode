@@ -1,0 +1,22 @@
+.editErrors__form .ant-space,
+.editErrors__form .ant-space .ant-space-item:nth-child(2),
+.editErrors__form .ant-space .ant-space-item:nth-child(3) {
+  width: 100%;
+}
+.editErrors__add-fields {
+  display: flex;
+  align-items: center;
+}
+.editErrors__add-fields .editErrors__add-field-icon {
+  margin-right: 8px;
+}
+.editErrors__fields-placeholders-container {
+  display: flex;
+}
+.editErrors__icon-placeholder {
+  width: 30px;
+  margin-right: 8px;
+}
+.editErrors_field-placeholder {
+  width: 100%;
+}

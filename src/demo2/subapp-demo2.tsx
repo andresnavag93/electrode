@@ -1,32 +1,32 @@
-import { React } from "subapp-react";
-import { connect } from "react-redux";
-import { reduxLoadSubApp } from "subapp-redux";
-import reduxReducers from "./reducers";
+import { React } from 'subapp-react';
+import { connect } from 'react-redux';
+import { reduxLoadSubApp } from 'subapp-redux';
+import reduxReducers from './reducers';
 
 const incNumber = () => {
   return {
-    type: "INC_NUMBER"
+    type: 'INC_NUMBER'
   };
 };
 
 const decNumber = () => {
   return {
-    type: "DEC_NUMBER"
+    type: 'DEC_NUMBER'
   };
 };
 
-const Demo2 = props => {
+const Demo2 = (props) => {
   const { value, dispatch } = props;
 
   return (
     <div>
       <div
         style={{
-          padding: "5px",
-          marginTop: "15px",
-          border: "solid",
-          marginLeft: "15%",
-          marginRight: "15%"
+          padding: '5px',
+          marginTop: '15px',
+          border: 'solid',
+          marginLeft: '15%',
+          marginRight: '15%'
         }}
       >
         <p>subapp demo2</p>
@@ -34,16 +34,16 @@ const Demo2 = props => {
         &nbsp;{value}&nbsp;
         <button onClick={() => dispatch(incNumber())}>&#8811;</button>
       </div>
-      <p style={{ textAlign: "center" }}>© {new Date().getFullYear()} Your (Company) name here</p>
+      <p style={{ textAlign: 'center' }}>© {new Date().getFullYear()} Your (Company) name here</p>
     </div>
   );
 };
 
-const mapStateToProps = state => state;
+const mapStateToProps = (state) => state;
 
 export default reduxLoadSubApp({
-  Component: connect(mapStateToProps, dispatch => ({ dispatch }))(Demo2),
-  name: "Demo2",
+  Component: connect(mapStateToProps, (dispatch) => ({ dispatch }))(Demo2),
+  name: 'Demo2',
   reduxReducers,
   prepare: ({ context, request }) => {
     return Promise.resolve({ value: 999 });

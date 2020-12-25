@@ -1,0 +1,60 @@
+.help {
+  width: 100%;
+}
+.help > h1.help__title {
+  font-weight: bold;
+  color: var(--walmart-blue-1);
+  font-size: 32px;
+  margin-bottom: 0.3em;
+  line-height: 44px;
+  margin-left: 40px;
+}
+.help > span.help__instructions {
+  line-height: 22px;
+  font-size: 16px;
+  font-weight: normal;
+  color: var(--walmart-blue-1);
+  margin-left: 40px;
+}
+.help div.help__search_box {
+  margin-bottom: 40px;
+  margin-left: 40px;
+}
+.help .help__collapse-panel {
+  margin-top: 30px;
+  color: var(--walmart-gray-1);
+  font-style: normal;
+  margin-left: 40px;
+  margin-right: 130px;
+}
+.help span.anticon.anticon-caret-right.ant-collapse-arrow.help__collapse-panel-icon {
+  color: #8c8c8c;
+  font-size: 25px;
+  right: 0px;
+  top: 10px;
+}
+.help div.ant-collapse-header {
+  padding-left: 0px !important;
+}
+.help div.ant-collapse-item.help__collapse-panel-title {
+  border-bottom: 0.5px solid #bfbfbf;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 0px;
+  padding-top: 10px;
+}
+.help div.ant-collapse-item.ant-collapse-item-active.help__collapse-panel-title {
+  border-bottom: 0px;
+}
+.help div.ant-collapse-content-box {
+  border-top: 0.5px solid #bfbfbf;
+}
+.help .help__collapse-panel-description {
+  white-space: pre-wrap;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0;
+}

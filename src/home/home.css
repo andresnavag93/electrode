@@ -1,0 +1,44 @@
+.logo {
+  width: 35px;
+  margin-left: 16px;
+}
+.site-header {
+  background-color: var(--walmart-blue-1);
+  padding: 0px;
+}
+.site-sider {
+  background-color: var(--walmart-blue-1);
+}
+.site-sider .site-sider-menu {
+  background-color: var(--walmart-blue-1);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.site-sider .site-sider-menu:not(.ant-menu-inline-collapsed) {
+  min-height: calc(100% - 48px);
+}
+.site-sider .site-sider-menu li:last-child {
+  margin-top: auto;
+}
+.site-sider .site-sider-menu.site-sider-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: var(--walmart-blue-2);
+}
+.site-header-user-menu-container {
+  float: right;
+  margin-right: 30.5px;
+}
+.site-header-user-menu-container .menu-user-name {
+  margin-left: 16px;
+  color: white;
+}
+.site-layout-background {
+  margin: 24px 16px;
+  padding: 24px;
+  min-height: calc(100vh - 112px);
+}
+.site-layout-background > div {
+  height: 100%;
+  display: flex;
+}
