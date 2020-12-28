@@ -1,0 +1,24 @@
+.error-detail-container {
+  width: 100%;
+}
+
+.error-detail-container .ant-table {
+  overflow-x: auto;
+}
+
+.error-detail__title {
+  margin-left: 20px;
+  font-size: 20px;
+}
+
+.error-detail__headers {
+  margin-top: 20px;
+}
+
+.error-detail__bold-text {
+  margin-left: 15px;
+}
+
+.error-detail-container .error-detail___data-table {
+  margin-top: 40px;
+}

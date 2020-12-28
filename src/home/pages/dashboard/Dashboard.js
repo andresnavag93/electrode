@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
+import { useHistory } from 'react-router-dom';
 import ErrorsFilter from '../../components/errorsFilter/ErrorsFilter';
 import TotalAmountDisplay from '../../components/totalAmountDisplay/TotalAmountDisplay';
 import columns from './columns';
 import data from '../../utils/mockData/ErrorsData';
 import './searchResult.css';
+
 const Dashboard = () => {
+  const history = useHistory();
   const [selectedRows, setSelectedRows] = useState([]);
   const [disableEditButton, setDisableEditButton] = useState(true);
   const [disableReprocessButton, setDisableReprocessButton] = useState(true);
   const [totalAmount, setTotalAmount] = useState(0);
   const [selectionAmount, setSelectionAmount] = useState(0);
+
   const onSelectedChange = (selectedRowKey) => {
     let cillErrorsCount = 0;
     let idocErrorsCount = 0;
@@ -35,6 +39,7 @@ const Dashboard = () => {
     setDisableEditButton(disableEdit);
     setDisableReprocessButton(disableReprocess);
   };
+
   const onSelectAll = () => {
     setDisableEditButton(true);
     setDisableReprocessButton(true);
@@ -71,11 +76,23 @@ const Dashboard = () => {
       },
     },
   ];
+
   const rowSelection = {
     selectedRowKeys: selectedRows,
     onChange: onSelectedChange,
     onSelectAll,
   };
+
+  const onRow = (record, rowIndex) => ({
+    onClick: () => {
+      if (record.error === 'CILL Error') {
+        // history.push(`/cill-error-detail/${record.key}`);
+      } else {
+        history.push(`/idoc-error-detail/${record.key}`);
+      }
+    },
+  });
+
   useEffect(() => {
     let currentDataTotalAmount = 0;
     if (!data) {
@@ -110,6 +127,7 @@ const Dashboard = () => {
         dataSource={data}
         rowSelection={rowSelection}
         className="dashboard___data-table"
+        onRow={onRow}
       />
     </div>
   );

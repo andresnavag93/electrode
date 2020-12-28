@@ -12,6 +12,7 @@ import About from './pages/About';
 import Main from './pages/errorSearch/ErrorSearch';
 import Help from './pages/help/Help';
 import Dashboard from './pages/dashboard/Dashboard';
+import ErrorDetail from './pages/errorDetail/ErrorDetail';
 import logo from './assets/img/logo.png';
 import 'antd/dist/antd.css';
 import './assets/css/colors.css';
@@ -74,7 +75,7 @@ const Home = (props) => {
                     <Menu.Item
                       key="1"
                       icon={<FileSyncOutlined />}>
-                      <Link to="/main">Dashboard</Link>
+                      <Link to="/dashboard">Dashboard</Link>
                     </Menu.Item>
                     <Menu.Item
                       key="2"
@@ -89,6 +90,18 @@ const Home = (props) => {
                       <Route path="/main" component={Main} />
                       <Route path="/help" component={Help} />
                       <Route path="/dashboard" component={Dashboard} />
+                      {/* <Route
+                        path='/cill-error-detail/:id'
+                        render={(props) => (
+                          <ErrorDetail {...props} errorType='cill' />
+                        )}
+                      /> */}
+                      <Route
+                        path='/idoc-error-detail/:id'
+                        render={(props) => (
+                          <ErrorDetail {...props} errorType='idoc' />
+                        )}
+                      />
                     </Switch>
                   </div>
                 </Content>

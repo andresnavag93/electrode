@@ -1,6 +1,6 @@
 {
   "spec_dir": "src",
-  "spec_file": ["**/*.test.js"],
+  "spec_files": ["**/*.test.js"],
   "helpers": [
     "./../spec/helpers/babel.js",
     "./../spec/helpers/enzyme.js",
