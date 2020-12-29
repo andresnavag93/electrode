@@ -2,9 +2,9 @@ import React from 'react';
 import { Row, Table, Typography, Button } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
-import { formatToDollarCurrency } from '../../utils/index';
 import columns from './columns';
 import data from '../../utils/mockData/ErrorsDetailData';
+import { formatToDollarCurrency } from '../../utils/index';
 import './errorDetail.css';
 
 const { Text } = Typography;

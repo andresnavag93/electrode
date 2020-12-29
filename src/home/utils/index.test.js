@@ -8,6 +8,7 @@ import {
   blockDatesBefore,
   blockDateStartOutOfRange,
   blockDateEndOutOfRange,
+  formatToDollarCurrency,
 } from '.';
 describe('hasMoreThanOneDifferentValue', () => {
   const baseArray = [
@@ -172,5 +173,31 @@ describe('blockDateEndOutOfRange', () => {
       eightDaysBeforeToday.setDate(today.getDate() - 8);
       expect(blockDateEndOutOfRange(eightDaysBeforeToday, sevenDaysBeforeToday)).toBe(true);
     });
+  });
+});
+
+describe('formatToDollarCurrency', () => {
+  it('it should return $1,000.00 if 1000 number is passed', () => {
+    expect(formatToDollarCurrency(1000)).toBe('$1,000.00');
+  });
+
+  it('it should return $1,000.00 if 1000 string is passed', () => {
+    expect(formatToDollarCurrency('1000')).toBe('$1,000.00');
+  });
+
+  it('it should return $4,000,000.00 if 4000000 string is passed', () => {
+    expect(formatToDollarCurrency('4000000')).toBe('$4,000,000.00');
+  });
+
+  it('it should return $4,000,000.00 if 4000000 number is passed', () => {
+    expect(formatToDollarCurrency(4000000)).toBe('$4,000,000.00');
+  });
+
+  it('it should return $1,035.15 if 1035.15 number is passed', () => {
+    expect(formatToDollarCurrency(1035.15)).toBe('$1,035.15');
+  });
+
+  it('it should return $1,035.15 if 1035.15 string is passed', () => {
+    expect(formatToDollarCurrency('1035.15')).toBe('$1,035.15');
   });
 });
