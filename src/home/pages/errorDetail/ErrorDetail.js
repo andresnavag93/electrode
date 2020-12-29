@@ -2,19 +2,19 @@ import React from 'react';
 import { Row, Table, Typography, Button } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
+import { formatToDollarCurrency } from '../../utils/index';
 import columns from './columns';
 import data from '../../utils/mockData/ErrorsDetailData';
 import './errorDetail.css';
 
 const { Text } = Typography;
-const formatter = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
 
 const ErrorDetail = ({ errorType, match }) => {
   const history = useHistory();
   const id = parseInt(match.params.id);
   const currentError = data.find((error) => error.key === id);
   const { amount, parentId, interfaceId, processArea, lineCount, errorsAssociated } = currentError;
-  const amountWithFormat = formatter.format(amount);
+  const amountWithFormat = formatToDollarCurrency(amount);
 
   return (
     <div className="error-detail-container">

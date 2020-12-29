@@ -110,3 +110,12 @@ export const blockDateStartOutOfRange = (current) => {
 export const blockDateEndOutOfRange = (current, date) => {
   return blockDatesAfterToday(current) || blockDatesBefore(current, date);
 };
+
+/**
+ * Returns a string with dollar currency format
+ * @param {*} amount
+ */
+export const formatToDollarCurrency = (amount) => {
+  const formatter = Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+  return formatter.format(amount);
+};
