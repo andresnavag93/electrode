@@ -90,16 +90,16 @@ const Home = (props) => {
                       <Route path="/main" component={Main} />
                       <Route path="/help" component={Help} />
                       <Route path="/dashboard" component={Dashboard} />
-                      {/* <Route
-                        path='/cill-error-detail/:id'
-                        render={(props) => (
-                          <ErrorDetail {...props} errorType='cill' />
-                        )}
-                      /> */}
                       <Route
                         path='/idoc-error-detail/:id'
                         render={(props) => (
                           <ErrorDetail {...props} errorType='idoc' />
+                        )}
+                      />
+                      <Route
+                        path='/cill-error-detail/:id'
+                        render={(props) => (
+                          <ErrorDetail {...props} errorType='cill' />
                         )}
                       />
                     </Switch>

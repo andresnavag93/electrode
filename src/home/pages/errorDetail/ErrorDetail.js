@@ -34,22 +34,22 @@ const ErrorDetail = ({ errorType, match }) => {
         </Text>
       </Row>
 
-      {/* {errorType !== 'cill' && ( */}
-      <Row justify="start">
-        <Text className="error-detail__headers">
-          <strong>Error: </strong>
-          {parentId}
-          <strong className="error-detail__bold-text">Amount: </strong>
-          {amountWithFormat}
-          <strong className="error-detail__bold-text">Interface ID: </strong>
-          {interfaceId}
-          <strong className="error-detail__bold-text">Process Area: </strong>
-          {processArea}
-          <strong className="error-detail__bold-text">Line Count: </strong>
-          {lineCount}
-        </Text>
-      </Row>
-      {/* )} */}
+      {errorType !== 'cill' && (
+        <Row justify="start">
+          <Text className="error-detail__headers">
+            <strong>Error: </strong>
+            {parentId}
+            <strong className="error-detail__bold-text">Amount: </strong>
+            {amountWithFormat}
+            <strong className="error-detail__bold-text">Interface ID: </strong>
+            {interfaceId}
+            <strong className="error-detail__bold-text">Process Area: </strong>
+            {processArea}
+            <strong className="error-detail__bold-text">Line Count: </strong>
+            {lineCount}
+          </Text>
+        </Row>
+      )}
 
       <Table
         columns={columns[errorType]}

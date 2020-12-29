@@ -86,7 +86,7 @@ const Dashboard = () => {
   const onRow = (record, rowIndex) => ({
     onClick: () => {
       if (record.error === 'CILL Error') {
-        // history.push(`/cill-error-detail/${record.key}`);
+        history.push(`/cill-error-detail/${record.key}`);
       } else {
         history.push(`/idoc-error-detail/${record.key}`);
       }
