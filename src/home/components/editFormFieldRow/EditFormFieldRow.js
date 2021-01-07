@@ -4,9 +4,7 @@ import { MinusCircleOutlined } from '@ant-design/icons';
 import EditCillErrorNewValueInput from '../editCillErrorNewValueInput/EditCillErrorNewValueInput';
 import { editErrorsFields } from '../../constants/editErrors';
 import { toCamelCase } from '../../utils/index';
-
 const { Option } = Select;
-
 const EditFormFieldRow = ({
   remove,
   field,
@@ -18,13 +16,11 @@ const EditFormFieldRow = ({
   const [originalValue, setOriginalValue] = useState('');
   const [posibleNewValues, setPosibleNewValues] = useState([]);
   let lastSelectedValue = useRef('');
-
   const handleSelectChange = (value) => {
     setOriginalValue(error[toCamelCase(value)]);
     setPosibleNewValues(posibleNewFieldValues[toCamelCase(value)]);
     cleanSelectedValues(value);
   };
-
   const cleanSelectedValues = (value) => {
     const filteredSelectedItems = selectedEditProp.filter(
       (item) => item !== lastSelectedValue.current,
@@ -32,21 +28,13 @@ const EditFormFieldRow = ({
     setSelectedEditProp([...filteredSelectedItems, value]);
     lastSelectedValue.current = value;
   };
-
-  const removeRow = (fieldName) => {
-    remove(fieldName);
+  const removeRow = (fieldName, fieldKey) => {
     cleanSelectedValues();
+    remove(fieldName);
   };
-
-  useEffect(() => {
-    return () => {
-      setSelectedEditProp([]);
-    };
-  }, []);
-
   return (
     <Space key={field.key} align="baseline">
-      <MinusCircleOutlined onClick={() => removeRow(field.name)} />
+      <MinusCircleOutlined onClick={() => removeRow(field.name, field.fieldKey)} />
       <Form.Item
         noStyle
         shouldUpdate={(prevValues, curValues) => prevValues.errors !== curValues.errors}

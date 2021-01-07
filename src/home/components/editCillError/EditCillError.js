@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { Form, Input, Popover } from 'antd';
 import { PlusCircleOutlined, DownOutlined } from '@ant-design/icons';
 import EditFormFieldRow from '../editFormFieldRow/EditFormFieldRow';
 import EditCillErrorPopoverData from '../editCillErrorPopoverData/EditCillErrorPopoverData';
 import { editCillErrorPosibleFieldsValues } from '../../constants/editCillErrorPosibleFieldsValues';
-
 const { TextArea } = Input;
-
-const EditCillError = ({ form, error }) => {
+const EditCillError = forwardRef(({ form, error }, ref) => {
   const [selectedEditProp, setSelectedEditProp] = useState([]);
-
+  useImperativeHandle(ref, () => ({
+    cleanSelectedEditProp() {
+      setSelectedEditProp([]);
+    },
+  }));
   return (
     <>
       <Popover
@@ -69,6 +71,5 @@ const EditCillError = ({ form, error }) => {
       </Form>
     </>
   );
-};
-
+});
 export default EditCillError;

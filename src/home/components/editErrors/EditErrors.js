@@ -1,44 +1,41 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Modal, Form, Button } from 'antd';
 import EditIDocError from '../editIDocError/EditIDocError';
 import EditCillError from '../editCillError/EditCillError';
 import isValidSession from './../../utils/isValidSession/isValidSession';
 import { successMessage } from '../../utils/notifications/notifications';
 import './editErrors.css';
-
 const EditErrors = ({ isModalVisible, closeModal, selectedError }) => {
   const [form] = Form.useForm();
-
+  const childCillError = useRef();
   const submitForm = () => {
     if (isValidSession()) {
-      // form
-      //   .validateFields()
-      //   .then((values) => {
-      //   //TODO: REMOVE THIS CONSOLE.LOG  WHEN API IS AVAILABLE
-      //     console.log(values);
-      //     form.resetFields();
-      //     closeModal(false);
-      //     successMessage('Form Submitted!');
-      //   })
-      //   .catch((info) => {
-      //     //TODO: REMOVE THIS CONSOLE.LOG  WHEN API IS AVAILABLE
-      //     console.log('Validate Failed:', info);
-      //   });
+      form
+        .validateFields()
+        .then((values) => {
+          // TODO: REMOVE THIS CONSOLE.LOG  WHEN API IS AVAILABLE
+          console.log(values);
+          form.resetFields();
+          closeModal(false);
+          successMessage('Form Submitted!');
+        })
+        .catch((info) => {
+          // TODO: REMOVE THIS CONSOLE.LOG  WHEN API IS AVAILABLE
+          console.log('Validate Failed:', info);
+        });
     } else {
       // Redirects the user to the homepage so he can log in again
-      // window.location.replace('/');
+      window.location.replace('/');
     }
   };
-
   const selectForm = () => {
     if (selectedError === null || selectedError === undefined) return;
     if (selectedError.error === 'Errored IDoc') {
       return <EditIDocError form={form} selectedError={selectedError} />;
     } else {
-      return <EditCillError form={form} error={selectedError} />;
+      return <EditCillError ref={childCillError} form={form} error={selectedError} />;
     }
   };
-
   const getModalTitle = () => {
     if (selectedError === null || selectedError === undefined) return;
     if (selectedError.error === 'Errored IDoc') {
@@ -47,7 +44,6 @@ const EditErrors = ({ isModalVisible, closeModal, selectedError }) => {
       return 'Edit CILL Error';
     }
   };
-
   const close = () => {
     if (selectedError.error === 'Errored IDoc') {
       form.resetFields();
@@ -56,10 +52,10 @@ const EditErrors = ({ isModalVisible, closeModal, selectedError }) => {
       form.setFieldsValue({
         fields: [''],
       });
+      childCillError.current.cleanSelectedEditProp();
     }
     closeModal(false);
   };
-
   return (
     <Modal
       visible={isModalVisible}
