@@ -1,16 +1,65 @@
-.errors-filter-container {
+.errors-filter__controls {
   display: flex;
   align-items: center;
 }
-.errors-filter-container .errors-filter___searchbox {
+.errors-filter__controls .errors-filter___searchbox {
   width: 70%;
   margin-right: 16px;
+  margin-bottom: 0;
 }
-.errors-filter-container > div.ant-divider.ant-divider-vertical.errors-filter___divider {
+.errors-filter__controls .errors-filter___searchbox .ant-row.ant-form-item {
+  margin: 0;
+}
+.errors-filter__controls > div.ant-divider.ant-divider-vertical.errors-filter___divider {
   margin-left: 16px;
   margin-right: 8px;
   height: 3.5vh;
 }
-.errors-filter-container > .errors-filter___button-margin {
+.errors-filter__controls > .errors-filter___button-margin {
   margin: 0 8px;
+}
+.ant-divider.ant-divider-horizontal.errors-filter___section-divider {
+  margin: 17px 0 0 0;
+}
+.errors-filter__filters.errors-filter__filters-initial {
+  height: 0;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.errors-filter__filters.errors-filter__filters-active {
+  height: inherit;
+  opacity: 1;
+  transition: translateY(0);
+  margin-top: 17px;
+}
+.errors-filter__filters .errors-filters___filter-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.errors-filter__filters .errors-filter___status {
+  width: 133px;
+  height: 36px;
+  margin: 0 8px 8px 0;
+}
+.errors-filter__filters .errors-filter___status-divider {
+  height: 36px;
+  margin: 0 8px 8px 0;
+}
+.errors-filter__filters .errors-filter___generic {
+  width: 140px;
+  height: 36px;
+  margin: 0 8px 8px 0;
+}
+.errors-filter__filters
+  .errors-filter___generic
+  .ant-form-item-control
+  .ant-form-item-control-input
+  .ant-form-item-control-input-content
+  .ant-input-number {
+  width: inherit;
+}
+.errors-filter__filters .errors-filter___amount-condition {
+  width: 55px;
+  height: 36px;
+  margin: 0 0 8px 0;
 }

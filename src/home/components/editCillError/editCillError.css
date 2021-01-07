@@ -1,7 +1,6 @@
 .editErrors__form .ant-space,
 .editErrors__form .ant-space .ant-space-item:nth-child(2),
-.editErrors__form .ant-space .ant-space-item:nth-child(3),
-.editErrors__form .ant-space .ant-space-item:nth-child(4) {
+.editErrors__form .ant-space .ant-space-item:nth-child(3) {
   width: 100%;
 }
 .editErrors__add-fields {
@@ -13,19 +12,11 @@
 }
 .editErrors__fields-placeholders-container {
   display: flex;
-  margin-top: 16px;
 }
 .editErrors__icon-placeholder {
   width: 30px;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 .editErrors_field-placeholder {
   width: 100%;
-  margin-left: 8px;
-}
-.editErrors__transaction-level-data-table .ant-table .ant-table-tbody .ant-table-cell {
-  padding: 8px 16px;
-}
-.editCillError__Popover {
-  margin-bottom: 16px;
 }

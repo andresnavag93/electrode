@@ -6,14 +6,18 @@ export const parameterKeyOptions = [
   { value: 'errorCode', label: 'Error Code' },
   { value: 'status', label: 'Status' },
 ];
+
 export const maxParameterKey = 3;
+
 export const colors = {
   blue: 'blue',
 };
+
 export const general = {
   dateFormat: 'YYYY-MM-DD',
   displayDate: 'YYYY / MM / DD',
 };
+
 export const errorMessages = {
   onRequiredError: 'This field is required',
   onlyOneDifferentValue: 'Please insert only a value',

@@ -1,4 +1,4 @@
-import { REGEX, LENGTH } from './validationTypes';
+import { REGEX, LENGTH, DATE } from './validationTypes';
 export const editErrorsFields = {
   fields: [
     {
@@ -32,6 +32,50 @@ export const editErrorsFields = {
         {
           type: REGEX,
           expectedValue: '^[A-Z]{2}[0-9]{4}$',
+        },
+      ],
+    },
+  ],
+};
+export const editIDocErrorsFields = {
+  fields: [
+    {
+      label: 'idoc-id',
+      value: 'IDocs',
+      validations: [
+        {
+          type: LENGTH,
+          expectedValue: 16,
+        },
+      ],
+    },
+    {
+      label: 'document-number',
+      value: 'SAP Document No.',
+      validations: [
+        {
+          type: LENGTH,
+          expectedValue: 10,
+        },
+      ],
+    },
+    {
+      label: 'document-date',
+      value: 'Document date',
+      validations: [
+        {
+          type: DATE,
+          format: 'DD/MM/YYYY',
+        },
+      ],
+    },
+    {
+      label: 'posting-date',
+      value: 'Posting date',
+      validations: [
+        {
+          type: DATE,
+          format: 'DD/MM/YYYY',
         },
       ],
     },

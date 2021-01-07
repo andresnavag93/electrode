@@ -1,23 +1,11 @@
 import React, { useState } from 'react';
-import { Row, Form, DatePicker, Button, Select, Typography, message } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import { Row, Form, DatePicker, Button, Typography, message } from 'antd';
 import { useHistory } from 'react-router-dom';
-import Tag from '../../components/errorSearchTag/ErrorSearchTag';
-import { parameterKeyOptions, maxParameterKey, errorMessages, general } from '../../config';
-import {
-  orderArrayByValues,
-  hasMoreThanOneDifferentValue,
-  hasMoreValues,
-  hasInvalidKeyForRangeValue,
-  isValueOnOptionsLabel,
-  isValueAlreadySelected,
-  blockDatesBefore,
-  blockDateStartOutOfRange,
-  blockDateEndOutOfRange,
-} from '../../utils';
+import SearchBar from '../../components/searchBar/SearchBar';
+import { errorMessages, general } from '../../config';
+import { blockDatesBefore, blockDateStartOutOfRange, blockDateEndOutOfRange } from '../../utils';
 import './errorSearch.css';
 const { Item } = Form;
-const { Option } = Select;
 const { Title } = Typography;
 const { displayDate } = general;
 const ErrorSearch = () => {
@@ -25,7 +13,6 @@ const ErrorSearch = () => {
   const [form] = Form.useForm();
   const [isSearchButtonDisabled, setSearchButtonDisabled] = useState(true);
   const [isDateEndPickerDisabled, setDateEndPickerDisabled] = useState(true);
-  const parameterValues = parameterKeyOptions.map((parameter) => parameter.value);
   const onFinish = (values) => {
     const { creationDateStart, creationDateEnd } = form.getFieldsValue();
     if (blockDatesBefore(creationDateEnd, creationDateStart)) {
@@ -35,39 +22,7 @@ const ErrorSearch = () => {
     form.resetFields();
     setDateEndPickerDisabled(true);
     setSearchButtonDisabled(true);
-  };
-  const validateOptionSelected = (selectValues) => {
-    if (hasMoreThanOneDifferentValue(parameterValues, selectValues)) {
-      message.error(errorMessages.onlyOneDifferentValue);
-      selectValues.pop();
-      form.setFieldsValue({ select: selectValues });
-      return;
-    }
-    if (hasMoreValues(parameterValues, selectValues, maxParameterKey)) {
-      message.error(errorMessages.onMoreThanMaxParameterKeyError(maxParameterKey));
-      selectValues.pop();
-      form.setFieldsValue({ select: selectValues });
-      return;
-    }
-    if (hasInvalidKeyForRangeValue(selectValues)) {
-      message.error(errorMessages.onInvalidKeyForRangeValueError);
-      selectValues.pop();
-      form.setFieldsValue({ select: selectValues });
-      return;
-    }
-    if (isValueOnOptionsLabel(parameterKeyOptions, selectValues)) {
-      const [option] = parameterKeyOptions.filter(
-        (parameter) => parameter.label === selectValues[selectValues.length - 1],
-      );
-      selectValues.pop();
-      selectValues.push(option.value);
-      form.setFieldsValue({ select: selectValues });
-      return;
-    }
-  };
-  const onOptionSelect = (optionsSelected) => {
-    validateOptionSelected(optionsSelected);
-    form.setFieldsValue({ select: orderArrayByValues(parameterValues, optionsSelected) });
+    history.push('/dashboard');
   };
   return (
     <Row justify="center" className="error-search-container">
@@ -81,25 +36,7 @@ const ErrorSearch = () => {
         className="error-search__form"
         onFinish={onFinish}
       >
-        <Item name="select">
-          <Select
-            mode="tags"
-            placeholder="Meta Data Keys"
-            tagRender={Tag}
-            optionFilterProp="label"
-            optionLabelProp="label"
-            tokenSeparators={['']}
-            onChange={(optionValue, option) => onOptionSelect(optionValue, option)}
-          >
-            {parameterKeyOptions.map(({ value, label }) => (
-              <Option key={value} value={value} label={label}>
-                <>
-                  <EditOutlined /> {label}
-                </>
-              </Option>
-            ))}
-          </Select>
-        </Item>
+        <SearchBar form={form} placeholder="Meta Data Keys" />
         <Row justify="space-between">
           <Item
             className="date-picker-container"
@@ -135,13 +72,7 @@ const ErrorSearch = () => {
               onChange={(date) => setSearchButtonDisabled(false)}
             />
           </Item>
-          <Button
-            type="primary"
-            htmlType="submit"
-            size="large"
-            disabled={isSearchButtonDisabled}
-            onClick={() => history.push('/dashboard')}
-          >
+          <Button type="primary" htmlType="submit" size="large" disabled={isSearchButtonDisabled}>
             Search
           </Button>
         </Row>

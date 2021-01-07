@@ -1,39 +1,73 @@
 import React from 'react';
-import { Modal, Form, Select, Input, Space, Button } from 'antd';
-import { MinusCircleOutlined, PlusCircleOutlined } from '@ant-design/icons';
-import CustomFormItem from '../customFormItem/CustomFormItem';
-import { editErrorsFields } from '../../constants/editErrors';
-// import isValidSession from './../../utils/isValidSession/isValidSession';
+import { Modal, Form, Button } from 'antd';
+import EditIDocError from '../editIDocError/EditIDocError';
+import EditCillError from '../editCillError/EditCillError';
+import isValidSession from './../../utils/isValidSession/isValidSession';
+import { successMessage } from '../../utils/notifications/notifications';
 import './editErrors.css';
-const { Option } = Select;
-const { TextArea } = Input;
-const EditErrors = ({ isModalVisible, closeModal }) => {
+
+const EditErrors = ({ isModalVisible, closeModal, selectedError }) => {
   const [form] = Form.useForm();
+
   const submitForm = () => {
     if (isValidSession()) {
-      //   form
-      //     .validateFields()
-      //     .then((values) => {
-      //       console.log(values);
-      //       form.resetFields();
-      //     })
-      //     .catch((info) => {
-      //       console.log('Validate Failed:', info);
-      //     });
-      // } else {
-      //   // Redirects the user to the homepage so he can log in again
-      //   window.location.replace('/');
-      // }
-      closeModal(false);
+      // form
+      //   .validateFields()
+      //   .then((values) => {
+      //   //TODO: REMOVE THIS CONSOLE.LOG  WHEN API IS AVAILABLE
+      //     console.log(values);
+      //     form.resetFields();
+      //     closeModal(false);
+      //     successMessage('Form Submitted!');
+      //   })
+      //   .catch((info) => {
+      //     //TODO: REMOVE THIS CONSOLE.LOG  WHEN API IS AVAILABLE
+      //     console.log('Validate Failed:', info);
+      //   });
+    } else {
+      // Redirects the user to the homepage so he can log in again
+      // window.location.replace('/');
     }
   };
+
+  const selectForm = () => {
+    if (selectedError === null || selectedError === undefined) return;
+    if (selectedError.error === 'Errored IDoc') {
+      return <EditIDocError form={form} selectedError={selectedError} />;
+    } else {
+      return <EditCillError form={form} error={selectedError} />;
+    }
+  };
+
+  const getModalTitle = () => {
+    if (selectedError === null || selectedError === undefined) return;
+    if (selectedError.error === 'Errored IDoc') {
+      return 'Make Updates Based on S/4 Postings';
+    } else {
+      return 'Edit CILL Error';
+    }
+  };
+
+  const close = () => {
+    if (selectedError.error === 'Errored IDoc') {
+      form.resetFields();
+    } else {
+      form.resetFields();
+      form.setFieldsValue({
+        fields: [''],
+      });
+    }
+    closeModal(false);
+  };
+
   return (
     <Modal
       visible={isModalVisible}
-      title="Edit Error"
-      onCancel={() => closeModal(false)}
+      title={getModalTitle()}
+      onCancel={() => close()}
+      width={700}
       footer={[
-        <Button key="cancel" onClick={() => closeModal(false)}>
+        <Button key="cancel" onClick={() => close()}>
           Cancel
         </Button>,
         <Button key="save" onClick={() => submitForm()}>
@@ -44,65 +78,7 @@ const EditErrors = ({ isModalVisible, closeModal }) => {
         </Button>,
       ]}
     >
-      <p>(4) Errors Selected</p>
-      <div className="editErrors__fields-placeholders-container">
-        <div className="editErrors__icon-placeholder"></div>
-        <p className="editErrors_field-placeholder">Field:</p>
-        <p className="editErrors_field-placeholder">Value:</p>
-      </div>
-      <Form
-        form={form}
-        name="editErrors__form"
-        className="editErrors__form"
-        autoComplete="off"
-        initialValues={{ errors: [''] }}
-      >
-        <Form.List name="errors">
-          {(fields, { add, remove }) => (
-            <>
-              {fields.map((field) => (
-                <Space key={field.key} align="baseline">
-                  <MinusCircleOutlined onClick={() => remove(field.name)} />
-                  <Form.Item
-                    noStyle
-                    shouldUpdate={(prevValues, curValues) => prevValues.errors !== curValues.errors}
-                  >
-                    {() => (
-                      <Form.Item
-                        {...field}
-                        name={[field.name, 'field']}
-                        fieldKey={[field.fieldKey, 'field']}
-                        rules={[{ required: true, message: 'Missing field' }]}
-                      >
-                        <Select>
-                          {editErrorsFields.fields.map(({ label, value }) => (
-                            <Option key={label} value={label}>
-                              {value}
-                            </Option>
-                          ))}
-                        </Select>
-                      </Form.Item>
-                    )}
-                  </Form.Item>
-                  <CustomFormItem form={form} field={field} />
-                </Space>
-              ))}
-              <Form.Item>
-                <div className="editErrors__add-fields">
-                  <PlusCircleOutlined
-                    className="editErrors__add-field-icon"
-                    onClick={() => add()}
-                  />
-                  Add a field to edit
-                </div>
-              </Form.Item>
-            </>
-          )}
-        </Form.List>
-        <Form.Item name="comment" rules={[{ max: 500, message: 'The maximun its 500 characters' }]}>
-          <TextArea rows={4} placeholder="Leave a comment" />
-        </Form.Item>
-      </Form>
+      {selectForm()}
     </Modal>
   );
 };

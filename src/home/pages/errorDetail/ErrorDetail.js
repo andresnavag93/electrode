@@ -3,7 +3,7 @@ import { Row, Table, Typography, Button } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
 import columns from './columns';
-import data from '../../utils/mockData/ErrorsDetailData';
+import data from '../../utils/mockData/ErrorsData';
 import { formatToDollarCurrency } from '../../utils/index';
 import './errorDetail.css';
 

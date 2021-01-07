@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { loadSubApp, AppContext } from 'subapp-react';
+// import Cookies from '@walmart/electrode-cookies';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Layout, Menu, Row, Col, Avatar, Dropdown } from 'antd';
 import {
@@ -17,9 +18,12 @@ import logo from './assets/img/logo.png';
 import 'antd/dist/antd.css';
 import './assets/css/colors.css';
 import './home.css';
+
 const { Header, Sider, Content } = Layout;
+
 const Home = (props) => {
   const [collapsed, setCollapsed] = useState(true);
+  
   const loggedInUserMenu = (
     <Menu>
       <Menu.Item>
@@ -29,6 +33,7 @@ const Home = (props) => {
       </Menu.Item>
     </Menu>
   );
+
   return(
     <AppContext.Consumer>
       {({ ssr }) => {
@@ -48,7 +53,7 @@ const Home = (props) => {
                       <a
                         className="ant-dropdown-link menu-user-name"
                         onClick={(e) => e.preventDefault()}>
-                        {'Walmart'} <DownOutlined />
+                        {/* {ssoInfo.name} <DownOutlined /> */}
                       </a>
                     </Dropdown>
                   </div>
@@ -75,7 +80,7 @@ const Home = (props) => {
                     <Menu.Item
                       key="1"
                       icon={<FileSyncOutlined />}>
-                      <Link to="/dashboard">Dashboard</Link>
+                      <Link to="/main">Dashboard</Link>
                     </Menu.Item>
                     <Menu.Item
                       key="2"
@@ -102,6 +107,7 @@ const Home = (props) => {
                           <ErrorDetail {...props} errorType='cill' />
                         )}
                       />
+                      <Route exact path="/" component={Main} />
                     </Switch>
                   </div>
                 </Content>
@@ -113,4 +119,4 @@ const Home = (props) => {
     </AppContext.Consumer>
   );
 };
-export default loadSubApp({ Component: Home, name: 'Home', useReactRouter: true });
+export default loadSubApp({ Component: Home, name:  'Home', useReactRouter: true });

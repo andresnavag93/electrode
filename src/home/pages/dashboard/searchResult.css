@@ -5,7 +5,3 @@
 .dashboard-container .ant-table {
   overflow-x: auto;
 }
-
-.dashboard__data-table {
-  margin-top: 18px;
-}

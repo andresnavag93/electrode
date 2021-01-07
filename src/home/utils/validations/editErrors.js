@@ -1,7 +1,9 @@
-import { REGEX, LENGTH } from '../../constants/validationTypes';
+import { REGEX, LENGTH, DATE } from '../../constants/validationTypes';
+import moment from 'moment';
+
 export const validateFieldValue = (value, validations) => {
   let passedValidationCount = 0;
-  validations.forEach(({ type, expectedValue }) => {
+  validations.forEach(({ type, expectedValue, format }) => {
     if (type === LENGTH) {
       if (value.length === expectedValue) {
         passedValidationCount++;
@@ -9,6 +11,11 @@ export const validateFieldValue = (value, validations) => {
     } else if (type === REGEX) {
       const regex = RegExp(expectedValue);
       if (regex.test(value)) {
+        passedValidationCount++;
+      }
+    } else if (type === DATE) {
+      const date = moment(value, format);
+      if (date.isValid()) {
         passedValidationCount++;
       }
     }
