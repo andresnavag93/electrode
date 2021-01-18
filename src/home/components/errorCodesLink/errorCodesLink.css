@@ -1,0 +1,8 @@
+.error-codes-link {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+.error-codes-link .error-codes-link__text-color {
+  color: #bfbfbf;
+}

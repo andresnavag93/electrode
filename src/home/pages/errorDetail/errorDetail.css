@@ -22,3 +22,9 @@
 .error-detail-container .error-detail___data-table {
   margin-top: 40px;
 }
+
+.error-detail-container .error-codes-link-container {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}

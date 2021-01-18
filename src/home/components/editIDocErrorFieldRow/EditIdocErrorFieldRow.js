@@ -3,9 +3,8 @@ import { Form, Select, Space } from 'antd';
 import { MinusCircleOutlined, DownOutlined, CalendarOutlined } from '@ant-design/icons';
 import CustomIDocErrorFormItem from '../customIDocErrorFormItem/CustomIDocErrorFormItem';
 import { editIDocErrorsFields } from '../../constants/editErrors';
-
+import { errorMessages } from '../../config';
 const { Option } = Select;
-
 const EditIDocErrorFieldRow = ({ remove, field }) => {
   const [selectValue, setSelectValue] = useState('document-number');
   const { key, name, fieldKey } = field;
@@ -21,7 +20,7 @@ const EditIDocErrorFieldRow = ({ remove, field }) => {
             {...field}
             name={[name, 'field']}
             fieldKey={[fieldKey, 'field']}
-            rules={[{ required: true, message: 'Missing field' }]}
+            rules={[{ required: true, message: errorMessages.onRequiredError }]}
           >
             <Select
               onChange={(value) => setSelectValue(value)}

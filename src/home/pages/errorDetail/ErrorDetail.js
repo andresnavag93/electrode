@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Table, Typography, Button } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom';
+import ErrorCodesLink from '../../components/errorCodesLink/ErrorCodesLink';
 import columns from './columns';
 import data from '../../utils/mockData/ErrorsData';
 import { formatToDollarCurrency } from '../../utils/index';
@@ -32,6 +33,9 @@ const ErrorDetail = ({ errorType, match }) => {
         <Text className="error-detail__title">
           Total Errored Amount <strong>{amountWithFormat}</strong>
         </Text>
+        <div className="error-codes-link-container">
+          <ErrorCodesLink />
+        </div>
       </Row>
 
       {errorType !== 'cill' && (

@@ -3,7 +3,14 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .total-amount-display > h3.ant-typography {
   margin-top: 0 !important;
+}
+.total-amount-display .total-amount-display__error-codes-link-container {
+  display: flex;
+}
+.total-amount-display .error-codes-link-container___error-codes-link {
+  align-self: center;
+  margin-bottom: 10px;
+  margin-left: 30px;
 }

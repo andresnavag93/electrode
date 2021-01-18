@@ -1,0 +1,32 @@
+.error-codes-container {
+  width: 100%;
+  color: #bfbfbf;
+}
+.error-codes-container .ant-table {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+.error-codes-container div.ant-table.ant-table-small {
+  background-color: rgba(0, 0, 0, 0);
+}
+.error-codes-container .error-codes___data-table {
+  margin-top: 30px;
+}
+.error-codes-container .error-codes-container__link,
+.error-codes-container a.error-codes-container__link:hover {
+  font-size: 18px;
+  color: #bfbfbf;
+}
+.error-codes-container .error-codes___data-table {
+  white-space: nowrap;
+}
+.error-codes-container .error-codes___data-table thead.ant-table-thead th.ant-table-cell {
+  background-color: white;
+}
+.error-codes-container .error-codes___data-table tbody.ant-table-tbody td.ant-table-cell {
+  color: #bfbfbf;
+  border-bottom-color: #e8e8e8;
+}
+.error-codes-container div.ant-table-content {
+  height: calc(100vh - 240px);
+}

@@ -1,12 +1,12 @@
-import { loadXarcDevTasks } from "@xarc/app-dev/lib/dev-tasks";
-import xclap from "xclap";
+import { loadXarcDevTasks } from '@xarc/app-dev/lib/dev-tasks';
+import xclap from 'xclap';
 
 xclap.updateEnv(
   {
     /*
      * Configure local development with http://localhost:3000
      */
-    HOST: "localhost",
+    HOST: 'localhost',
     PORT: 3000,
     /*
      * Set app's node server to listen at port 3100 so the proxy can listen at 3000
@@ -24,4 +24,6 @@ xclap.updateEnv(
   }
 );
 
-loadXarcDevTasks(xclap, {});
+loadXarcDevTasks(xclap, { webpackOptions: {
+  cssModuleSupport: false
+}});

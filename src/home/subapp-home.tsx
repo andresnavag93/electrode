@@ -15,6 +15,7 @@ import Main from './pages/errorSearch/ErrorSearch';
 import Help from './pages/help/Help';
 import Dashboard from './pages/dashboard/Dashboard';
 import ErrorDetail from './pages/errorDetail/ErrorDetail';
+import ErrorCodes from './pages/errorCodes/ErrorCodes';
 import Logo from './components/logo/Logo';
 import 'antd/dist/antd.css';
 import './assets/css/colors.css';
@@ -32,14 +33,14 @@ const Home = (props) => {
   return (
     <AppContext.Consumer>
       {({ ssr }) => {
-        // const ssoCred = Cookies.get('SSO_CRED', ssr);
+        // c onst ssoCred = Cookies.get('SSO_CRED', ssr);
         // const ssoInfo = JSON.parse(ssoCred || '{}');
         return (
           <Layout>
             <Header className="site-header">
               <Row gutter={0} justify="space-between">
                 <Col span={8}>
-                  <Logo/>
+                  <Logo />
                 </Col>
                 <Col span={8}>
                   <div className="site-header-user-menu-container">
@@ -94,6 +95,7 @@ const Home = (props) => {
                           path="/cill-error-detail/:id"
                           render={(props) => <ErrorDetail {...props} errorType="cill" />}
                         />
+                        <Route path="/error-codes" component={ErrorCodes} />
                         <Route exact path="/" component={Main} />
                       </Switch>
                     </div>

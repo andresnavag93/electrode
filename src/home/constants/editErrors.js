@@ -1,4 +1,8 @@
 import { REGEX, LENGTH, DATE } from './validationTypes';
+export const errorTypes = {
+  CILL_ERROR: 'CILL Error',
+  ERRORED_IDOC: 'Errored IDoc',
+};
 export const editErrorsFields = {
   fields: [
     {
@@ -37,10 +41,16 @@ export const editErrorsFields = {
     },
   ],
 };
+export const iDocErrorsFieldNames = {
+  IDOC_ID: 'idoc-id',
+  DOCUMENT_NUMBER: 'document-number',
+  DOCUMENT_DATE: 'document-date',
+  POSTING_DATE: 'posting-date',
+};
 export const editIDocErrorsFields = {
   fields: [
     {
-      label: 'idoc-id',
+      label: iDocErrorsFieldNames.IDOC_ID,
       value: 'IDocs',
       validations: [
         {
@@ -50,7 +60,7 @@ export const editIDocErrorsFields = {
       ],
     },
     {
-      label: 'document-number',
+      label: iDocErrorsFieldNames.DOCUMENT_NUMBER,
       value: 'SAP Document No.',
       validations: [
         {
@@ -60,22 +70,22 @@ export const editIDocErrorsFields = {
       ],
     },
     {
-      label: 'document-date',
+      label: iDocErrorsFieldNames.DOCUMENT_DATE,
       value: 'Document date',
       validations: [
         {
           type: DATE,
-          format: 'DD/MM/YYYY',
+          format: 'MM/DD/YYYY',
         },
       ],
     },
     {
-      label: 'posting-date',
+      label: iDocErrorsFieldNames.POSTING_DATE,
       value: 'Posting date',
       validations: [
         {
           type: DATE,
-          format: 'DD/MM/YYYY',
+          format: 'MM/DD/YYYY',
         },
       ],
     },

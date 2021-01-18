@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Row, Form, DatePicker, Button, Typography, message } from 'antd';
 import { useHistory } from 'react-router-dom';
+import ErrorCodesLink from '../../components/errorCodesLink/ErrorCodesLink';
 import { errorMessages, general } from '../../config';
 import { store } from '../../context/ContextProvider';
 import { CILL } from '../../context/types';
@@ -55,6 +56,9 @@ const ErrorSearch = () => {
     <Row justify="center" className="error-search-container">
       <Row justify="start" className="title-container">
         <Title level={4}>CILL Error Search</Title>
+      </Row>
+      <Row justify="end" className="error-search-container__error-codes-link">
+        <ErrorCodesLink />
       </Row>
       <Form
         form={form}

@@ -5,3 +5,7 @@
 .dashboard-container .ant-table {
   overflow-x: auto;
 }
+
+div.ant-table-wrapper.dashboard__data-table tr {
+  cursor: pointer;
+}

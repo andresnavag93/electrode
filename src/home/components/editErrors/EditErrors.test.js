@@ -3,9 +3,8 @@ import { shallow, mount } from 'enzyme';
 import EditErrors from './EditErrors';
 import EditCillError from '../editCillError/EditCillError';
 import EditIDocError from '../editIDocError/EditIDocError';
-
+import ReprocessIDocError from '../reprocessIDocError/ReprocessIDocError';
 import '../../../../spec/helpers/enzyme';
-
 const defaultProps = {
   isModalVisible: true,
   closeModal: jasmine.createSpy(),
@@ -27,7 +26,6 @@ const defaultProps = {
     storeNumber: 'FN1234',
   },
 };
-
 const defaultPropsIDoc = {
   isModalVisible: true,
   closeModal: jasmine.createSpy(),
@@ -46,7 +44,6 @@ const defaultPropsIDoc = {
     creatationDate: '01/10/2020',
   },
 };
-
 describe('Edit Errors Modal', () => {
   it('the component mounts without crashing', () => {
     const wrapper = shallow(<EditErrors {...defaultProps} />);
@@ -59,6 +56,10 @@ describe('Edit Errors Modal', () => {
   it('should render the respective component according to the error type: idoc', () => {
     const wrapper = mount(<EditErrors {...defaultPropsIDoc} />);
     expect(wrapper.find(EditIDocError).exists()).toBeTruthy();
+  });
+  it('should render the respective component according to the error type: reprocess idoc', () => {
+    const wrapper = mount(<EditErrors {...defaultPropsIDoc} isErrorReprocess={true} />);
+    expect(wrapper.find(ReprocessIDocError).exists()).toBeTruthy();
   });
   it('when the users click on the cancel btn, the modal should close', () => {
     const wrapper = mount(<EditErrors {...defaultProps} />);

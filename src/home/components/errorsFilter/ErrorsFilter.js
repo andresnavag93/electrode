@@ -31,7 +31,11 @@ const ErrorsFilter = ({
   const [filterVisibleClassName, setFilterVisibleClassName] = useState(
     'errors-filter__filters-initial',
   );
-  const closeEditModal = (value) => setEditModalVisible(value);
+  const [isErrorReprocess, setIsErrorReprocess] = useState(false);
+  const closeEditModal = (value) => {
+    setEditModalVisible(value);
+    setIsErrorReprocess(false);
+  };
   const toggleFilter = (value) => {
     setFilterVisible(value);
     !isFilterVisible
@@ -59,6 +63,12 @@ const ErrorsFilter = ({
   };
   const onResetFiltersForm = () => {
     errorsFilterForm.resetFields();
+    setIsCillFilter(false);
+    setIsIdocFilter(false);
+  };
+  const onReprocessClick = () => {
+    setEditModalVisible(true);
+    setIsErrorReprocess(true);
   };
   return (
     <div>
@@ -75,6 +85,7 @@ const ErrorsFilter = ({
           id="errors-filter-reprocess-button"
           disabled={disableReprocessButton}
           icon={<RedoOutlined />}
+          onClick={onReprocessClick}
         >
           Reprocess IDocs in CILL
         </Button>
@@ -91,6 +102,7 @@ const ErrorsFilter = ({
           selectedError={selectedRow}
           isModalVisible={isEditModalVisible}
           closeModal={closeEditModal}
+          isErrorReprocess={isErrorReprocess}
         />
         <Button icon={<DownloadOutlined />}>Export as CSV</Button>
         <Divider type="vertical" className="errors-filter___divider" />
@@ -141,6 +153,8 @@ const ErrorsFilter = ({
             filterObj={General.amount}
             step={0.01}
             min={0}
+            max={99999999999999999999999.99}
+            precision={2}
             className="errors-filter___amount errors-filter___generic"
           />
           <CustomFilterFormItem

@@ -4,6 +4,13 @@
   width: 80%;
   align-self: center;
 }
+.error-search-container .error-search-container__error-codes-link {
+  margin-top: -20px;
+  margin-bottom: 10px;
+  padding-right: 10px;
+  width: 100%;
+  text-align: end;
+}
 .error-search__form {
   width: 100%;
 }

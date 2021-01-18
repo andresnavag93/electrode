@@ -23,3 +23,16 @@
 .editIDocError__form div.ant-space:nth-child(1) span.anticon.anticon-minus-circle {
   visibility: hidden;
 }
+.editIDocError__form .ant-typography.ant-typography-secondary {
+  display: flex;
+}
+.editIDocError__form h5.ant-typography {
+  line-height: 30px;
+}
+.editIDocError__form .anticon-question-circle {
+  line-height: 36px;
+}
+.editIDocError__form .ant-checkbox {
+  margin-left: 16px;
+  margin-right: 8px;
+}
