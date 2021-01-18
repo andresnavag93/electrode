@@ -1,0 +1,4 @@
+export const CILL = {
+  SET_FILTERS: 'SET_FILTERS',
+  RESET_FILTERS: 'RESET_FILTERS',
+};

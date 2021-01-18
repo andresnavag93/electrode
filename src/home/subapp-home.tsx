@@ -9,32 +9,27 @@ import {
   DownOutlined,
   InfoCircleOutlined
 } from '@ant-design/icons';
+import { ContextProvider } from './context/ContextProvider';
 import About from './pages/About';
 import Main from './pages/errorSearch/ErrorSearch';
 import Help from './pages/help/Help';
 import Dashboard from './pages/dashboard/Dashboard';
 import ErrorDetail from './pages/errorDetail/ErrorDetail';
-import logo from './assets/img/logo.png';
+import Logo from './components/logo/Logo';
 import 'antd/dist/antd.css';
 import './assets/css/colors.css';
 import './home.css';
-
 const { Header, Sider, Content } = Layout;
-
 const Home = (props) => {
   const [collapsed, setCollapsed] = useState(true);
-  
   const loggedInUserMenu = (
     <Menu>
       <Menu.Item>
-        <a href="/logout">
-          Logout
-        </a>
+        <a href="/logout">Logout</a>
       </Menu.Item>
     </Menu>
   );
-
-  return(
+  return (
     <AppContext.Consumer>
       {({ ssr }) => {
         // const ssoCred = Cookies.get('SSO_CRED', ssr);
@@ -44,15 +39,16 @@ const Home = (props) => {
             <Header className="site-header">
               <Row gutter={0} justify="space-between">
                 <Col span={8}>
-                  <img className="logo" src={logo} />
+                  <Logo/>
                 </Col>
                 <Col span={8}>
                   <div className="site-header-user-menu-container">
-                    <Avatar  icon={<UserOutlined />} />
+                    <Avatar icon={<UserOutlined />} />
                     <Dropdown overlay={loggedInUserMenu}>
                       <a
                         className="ant-dropdown-link menu-user-name"
-                        onClick={(e) => e.preventDefault()}>
+                        onClick={(e) => e.preventDefault()}
+                      >
                         {/* {ssoInfo.name} <DownOutlined /> */}
                       </a>
                     </Dropdown>
@@ -66,51 +62,43 @@ const Home = (props) => {
                   className="site-sider"
                   collapsible
                   collapsed={collapsed}
-                  onCollapse={ () => setCollapsed(!collapsed) }>
-                  { !collapsed &&
+                  onCollapse={() => setCollapsed(!collapsed)}
+                >
+                  {!collapsed && (
                     <h4 style={{ color: 'white' }}>
                       CILL ERROR <br />
                       Monitoring Portal
                     </h4>
-                  }
-                  <Menu
-                    className="site-sider-menu"
-                    theme="dark"
-                    mode="inline">
-                    <Menu.Item
-                      key="1"
-                      icon={<FileSyncOutlined />}>
+                  )}
+                  <Menu className="site-sider-menu" theme="dark" mode="inline">
+                    <Menu.Item key="1" icon={<FileSyncOutlined />}>
                       <Link to="/main">Dashboard</Link>
                     </Menu.Item>
-                    <Menu.Item
-                      key="2"
-                      icon={<InfoCircleOutlined />}>
+                    <Menu.Item key="2" icon={<InfoCircleOutlined />}>
                       <Link to="/help">Help Screen</Link>
                     </Menu.Item>
                   </Menu>
                 </Sider>
-                <Content className="site-layout-background">
-                  <div>
-                    <Switch>
-                      <Route path="/main" component={Main} />
-                      <Route path="/help" component={Help} />
-                      <Route path="/dashboard" component={Dashboard} />
-                      <Route
-                        path='/idoc-error-detail/:id'
-                        render={(props) => (
-                          <ErrorDetail {...props} errorType='idoc' />
-                        )}
-                      />
-                      <Route
-                        path='/cill-error-detail/:id'
-                        render={(props) => (
-                          <ErrorDetail {...props} errorType='cill' />
-                        )}
-                      />
-                      <Route exact path="/" component={Main} />
-                    </Switch>
-                  </div>
-                </Content>
+                <ContextProvider>
+                  <Content className="site-layout-background">
+                    <div>
+                      <Switch>
+                        <Route path="/main" component={Main} />
+                        <Route path="/help" component={Help} />
+                        <Route path="/dashboard" component={Dashboard} />
+                        <Route
+                          path="/idoc-error-detail/:id"
+                          render={(props) => <ErrorDetail {...props} errorType="idoc" />}
+                        />
+                        <Route
+                          path="/cill-error-detail/:id"
+                          render={(props) => <ErrorDetail {...props} errorType="cill" />}
+                        />
+                        <Route exact path="/" component={Main} />
+                      </Switch>
+                    </div>
+                  </Content>
+                </ContextProvider>
               </Router>
             </Layout>
           </Layout>
@@ -119,4 +107,4 @@ const Home = (props) => {
     </AppContext.Consumer>
   );
 };
-export default loadSubApp({ Component: Home, name:  'Home', useReactRouter: true });
+export default loadSubApp({ Component: Home, name: 'Home', useReactRouter: true });

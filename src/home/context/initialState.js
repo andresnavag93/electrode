@@ -1,0 +1,23 @@
+export const initialState = {
+  errorsList: [],
+  filters: {
+    creationStartDate: null,
+    creationEndDate: null,
+    parentId: '',
+    batchId: '',
+    iDocNumber: '',
+    cillUId: '',
+    status: '',
+    errorCode: '',
+    errorId: '',
+    errorType: '',
+    amount: 0.0,
+    reprocessFromCILL: false,
+    arbitrarySearchText: '',
+    sortBy: 'creationDate',
+    filterBy: '',
+    page: 1,
+    perPage: 20,
+  },
+  selectedError: {},
+};

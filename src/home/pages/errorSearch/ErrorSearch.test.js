@@ -1,27 +1,29 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
+import { ContextProvider } from './../../context/ContextProvider';
 import ErrorSearch from './ErrorSearch';
 import '../../../../spec/helpers/enzyme';
 describe('Error Search view: ', () => {
   let wrapper;
   beforeEach(() => {
-    wrapper = mount(<ErrorSearch />);
+    wrapper = mount(
+      <ContextProvider>
+        <ErrorSearch />
+      </ContextProvider>,
+    );
   });
   it('the component mounts without crashing', () => {
-    const shallowWrapper = shallow(<ErrorSearch />);
-    expect(shallowWrapper).toBeDefined();
+    expect(wrapper).toBeDefined();
   });
   /**
    * Single value validations tests
    */
   it('Test Search with a single value', () => {
-    wrapper
-      .find('input#errorSearch_select.ant-select-selection-search-input')
-      .simulate('change', { target: { value: '1234' } });
+    wrapper.find('input#errorSearch_select').simulate('change', { target: { value: '1234' } });
     wrapper.find('div.ant-select-item-option-content').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateStart').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationStartDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateEnd').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationEndDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(1).simulate('click');
     expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(1);
     expect(wrapper.find('button.ant-btn.ant-btn-primary.ant-btn-lg').props()['disabled']).toBe(
@@ -32,9 +34,9 @@ describe('Error Search view: ', () => {
     expect(wrapper.find('button.ant-btn.ant-btn-primary.ant-btn-lg').props()['disabled']).toBe(
       true,
     );
-    wrapper.find('input#errorSearch_creationDateStart').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationStartDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateEnd').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationEndDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(1).simulate('click');
     //  Note: Review why is this test failing
     //  wrapper.find('button.ant-btn.ant-btn-primary.ant-btn-lg').simulate('click');
@@ -48,9 +50,9 @@ describe('Error Search view: ', () => {
       .find('input#errorSearch_select.ant-select-selection-search-input')
       .simulate('change', { target: { value: 'Error' } });
     wrapper.find('div.ant-select-item-option-content').at(1).simulate('click');
-    wrapper.find('input#errorSearch_creationDateStart').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationStartDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateEnd').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationEndDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(1).simulate('click');
     expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(1);
     expect(wrapper.find('div.ant-select-selector span.ant-tag.ant-tag-blue').at(0).text()).toBe(
@@ -65,9 +67,9 @@ describe('Error Search view: ', () => {
       .find('input#errorSearch_select.ant-select-selection-search-input')
       .simulate('change', { target: { value: '' } });
     wrapper.find('div.ant-select-item-option-content').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateStart').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationStartDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateEnd').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationEndDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(1).simulate('click');
     expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(1);
     expect(wrapper.find('div.ant-select-selector span.ant-tag.ant-tag-blue').at(0).text()).toBe(
@@ -93,10 +95,10 @@ describe('Error Search view: ', () => {
     expect(wrapper.find('div.ant-select-selector span.ant-tag').at(1).text()).toBe('1');
   });
   it('Test Date Start and Date End Validations', () => {
-    expect(wrapper.find('input#errorSearch_creationDateEnd').props()['disabled']).toBe(true);
-    wrapper.find('input#errorSearch_creationDateStart').simulate('mousedown');
+    expect(wrapper.find('input#errorSearch_creationEndDate').props()['disabled']).toBe(true);
+    wrapper.find('input#errorSearch_creationStartDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(0).simulate('click');
-    expect(wrapper.find('input#errorSearch_creationDateEnd').props()['disabled']).toBe(false);
+    expect(wrapper.find('input#errorSearch_creationEndDate').props()['disabled']).toBe(false);
   });
   it('The search button is enable only if the mandatory fields are fill', () => {
     expect(wrapper.find('button.ant-btn.ant-btn-primary.ant-btn-lg').props()['disabled']).toBe(
@@ -106,9 +108,9 @@ describe('Error Search view: ', () => {
       .find('input#errorSearch_select.ant-select-selection-search-input')
       .simulate('change', { target: { value: '1,2-3,4' } });
     wrapper.find('div.ant-select-item-option-content').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateStart').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationStartDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(0).simulate('click');
-    wrapper.find('input#errorSearch_creationDateEnd').simulate('mousedown');
+    wrapper.find('input#errorSearch_creationEndDate').simulate('mousedown');
     wrapper.find('a.ant-picker-today-btn').at(1).simulate('click');
     expect(wrapper.find('button.ant-btn.ant-btn-primary.ant-btn-lg').props()['disabled']).toBe(
       false,
@@ -236,16 +238,15 @@ describe('Error Search view: ', () => {
     expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(1);
     expect(wrapper.find('div.ant-select-selector span.ant-tag').text()).toBe('1-2');
   });
-  it('Search value search bar using comma first then hyphen only if there are not any parameters selected', () => {
+  it('Search value search bar using only hyphen if there are not any parameters selected', () => {
     expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(0);
     wrapper
       .find('input#errorSearch_select.ant-select-selection-search-input')
       .simulate('change', { target: { value: '1,2-3' } });
     wrapper.find('div.ant-select-item-option-content').at(0).simulate('click');
-    expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(1);
-    expect(wrapper.find('div.ant-select-selector span.ant-tag').text()).toBe('1,2-3');
+    expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(0);
   });
-  it('Search value search bar using comma first then hyphen if error code parameter is selected', () => {
+  it('Search value not enabled when not only hyphen if error code parameter is selected', () => {
     wrapper
       .find('input#errorSearch_select.ant-select-selection-search-input')
       .simulate('change', { target: { value: 'Error' } });
@@ -254,9 +255,8 @@ describe('Error Search view: ', () => {
       .find('input#errorSearch_select.ant-select-selection-search-input')
       .simulate('change', { target: { value: '1,2-3' } });
     wrapper.find('div.ant-select-item-option-content').at(0).simulate('click');
-    expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(2);
+    expect(wrapper.find('div.ant-select-selector span.ant-tag').length).toBe(1);
     expect(wrapper.find('div.ant-select-selector span.ant-tag').at(0).text()).toBe('Error Code');
-    expect(wrapper.find('div.ant-select-selector span.ant-tag').at(1).text()).toBe('1,2-3');
   });
   it('Search value search bar using comma first then hyphen shows error message if one parameter different to error code is selected', () => {
     // Click on the search bar

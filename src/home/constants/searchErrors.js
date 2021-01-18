@@ -86,6 +86,12 @@ export const searchErrors = {
     errorCode: {
       label: 'Error Code',
       help: 'IDOC Error (4) - CILL Internal Error (25)',
+      validations: [
+        {
+          max: 25,
+          message: '',
+        },
+      ],
     },
     errorType: {
       label: 'Error Type',
@@ -104,3 +110,4 @@ export const searchErrors = {
     },
   },
 };
+export const SEARCH_BAR_PATTERN = /^([a-zA-Z\d]+[\s,-]?[a-zA-Z\d]*){0,}[a-zA-Z\d]$/g;

@@ -1,23 +1,28 @@
 export const parameterKeyOptions = [
-  { value: 'parentID', label: 'Parent ID' },
-  { value: 'batchID', label: 'Batch ID' },
-  { value: 'idocNumber', label: 'IDoc Number' },
-  { value: 'cillUniqueIdentifier', label: 'CILL Unique Identifier' },
+  { value: 'parentId', label: 'Parent ID' },
+  { value: 'batchId', label: 'Batch ID' },
+  { value: 'iDocNumber', label: 'IDoc Number' },
+  { value: 'cillUId', label: 'CILL Unique Identifier' },
   { value: 'errorCode', label: 'Error Code' },
   { value: 'status', label: 'Status' },
 ];
-
 export const maxParameterKey = 3;
-
+/**
+ * Standard colors to be used
+ */
 export const colors = {
   blue: 'blue',
 };
-
+/**
+ * Formats in general
+ */
 export const general = {
-  dateFormat: 'YYYY-MM-DD',
-  displayDate: 'YYYY / MM / DD',
+  dateFormat: 'MM-DD-YYYY',
+  displayDate: 'MM / DD / YYYY',
 };
-
+/**
+ * Error messages
+ */
 export const errorMessages = {
   onRequiredError: 'This field is required',
   onlyOneDifferentValue: 'Please insert only a value',
@@ -27,4 +32,8 @@ export const errorMessages = {
   onRequiredEndDateError: 'Please select the end creation date',
   onDateEndBeforeDateStartError:
     'Creation date end must be greater or equal than creation date start',
+  onMoreThanMaxCommentError: (max) => `The comment should not be longer than ${max} characters`,
+  onInvalidSAPNoError: 'Invalid SAP Document No.',
+  onUnacceptableCharactersError: 'Invalid value. Acceptable special characters: "-", ",", " "',
+  onInvalidRangeValueError: 'Range value format must be: "minNumber-maxNumber"',
 };
